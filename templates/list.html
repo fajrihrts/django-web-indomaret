@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br>
+    <div class="container">
+        <div class="row">
+            <div class="card">
+                <div class="body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Stok</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col"><a href="{% url 'tambah' %}" class="btn btn-primary btn-sm"><i class="bi bi-bag-plus-fill"></i></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in produk %}
+                            <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ p.nama }}</td>
+                            <td>{{ p.harga }}</td>
+                            <td>{{ p.stok }}</td>
+                            <td>{{ p.deskripsi }}</td>
+                            <td>{{ p.kategori }}</td>
+                            <td>
+                                <a href="{% url 'edit' p.id %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                <a onclick="alert('Konfirmasi Pengahapusan Barang')" href="{% url 'hapus' p.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                            </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
